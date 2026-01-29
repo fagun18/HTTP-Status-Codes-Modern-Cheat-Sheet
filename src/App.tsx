@@ -10,8 +10,10 @@ import {
   Database,
   Github,
   X,
-  Globe
+  Globe,
+  ArrowUp
 } from 'lucide-react';
+import { useEffect } from 'react';
 import './App.css';
 
 // Helper to get styling based on category
@@ -33,6 +35,28 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeCode, setActiveCode] = useState<StatusCode | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button when page is scrolled down 300px
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const filteredCodes = useMemo(() => {
     return statusCodes.filter(item => {
@@ -264,9 +288,7 @@ function App() {
 
       <footer style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', padding: '2rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-          <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            Made with <span style={{ color: 'var(--color-4xx)' }}>❤</span> for the Web
-          </p>
+
           <p style={{ marginTop: '0.5rem' }}>
             Built by <strong>Mejbaur Bahar Fagun</strong>
           </p>
@@ -284,7 +306,7 @@ function App() {
               <img
                 src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
                 alt="LinkedIn"
-                style={{ height: '28px' }}
+                style={{ height: '28px', borderRadius: '4px' }}
               />
             </a>
 
@@ -312,6 +334,42 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          style={{
+            position: 'fixed',
+            bottom: '2rem',
+            right: '2rem',
+            background: 'var(--color-1xx)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer',
+            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.4)',
+            zIndex: 100,
+            transition: 'transform 0.2s, background 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.filter = 'brightness(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.filter = 'brightness(1)';
+          }}
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={24} />
+        </button>
+      )}
 
     </div>
   );

@@ -21,6 +21,7 @@ Click on any status code to view full details and documentation.
 | [100](docs/100.md) | Continue |
 | [101](docs/101.md) | Switching Protocols |
 | [102](docs/102.md) | Processing (WebDAV) |
+| [103](docs/103.md) | Early Hints |
 
 ### Success (2xx)
 | Code | Title |
@@ -75,6 +76,7 @@ Click on any status code to view full details and documentation.
 | [422](docs/422.md) | Unprocessable Entity (WebDAV) |
 | [423](docs/423.md) | Locked (WebDAV) |
 | [424](docs/424.md) | Failed Dependency (WebDAV) |
+| [425](docs/425.md) | Too Early |
 | [426](docs/426.md) | Upgrade Required |
 | [428](docs/428.md) | Precondition Required |
 | [429](docs/429.md) | Too Many Requests |
@@ -95,6 +97,18 @@ Click on any status code to view full details and documentation.
 | [508](docs/508.md) | Loop Detected (WebDAV) |
 | [510](docs/510.md) | Not Extended |
 | [511](docs/511.md) | Network Authentication Required |
+
+### Unofficial Codes
+| Code | Title |
+|------|-------|
+| [509](docs/509.md) | Bandwidth Limit Exceeded |
+| [521](docs/521.md) | Web Server Is Down |
+| [522](docs/522.md) | Connection Timed Out |
+| [523](docs/523.md) | Origin Is Unreachable |
+| [525](docs/525.md) | SSL Handshake Failed |
+| [529](docs/529.md) | Site is Overloaded |
+| [530](docs/530.md) | Site is Frozen |
+| [598](docs/598.md) | Network Read Timeout Error |
 
 ---
 

@@ -25,11 +25,12 @@ const getCategoryStyle = (category: string) => {
     case 'Client Error': return { color: 'var(--color-4xx)', icon: AlertCircle, bg: 'rgba(244, 63, 94, 0.1)' };
     case 'Server Error': return { color: 'var(--color-5xx)', icon: Server, bg: 'rgba(168, 85, 247, 0.1)' };
     case 'WebDAV': return { color: 'var(--color-webdav)', icon: Database, bg: 'rgba(20, 184, 166, 0.1)' };
+    case 'Unofficial': return { color: 'var(--text-muted)', icon: Globe, bg: 'rgba(148, 163, 184, 0.1)' };
     default: return { color: 'var(--text-muted)', icon: Info, bg: 'rgba(148, 163, 184, 0.1)' };
   }
 };
 
-const categories = ['All', 'Informational', 'Success', 'Redirection', 'Client Error', 'Server Error', 'WebDAV'];
+const categories = ['All', 'Informational', 'Success', 'Redirection', 'Client Error', 'Server Error', 'WebDAV', 'Unofficial'];
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');

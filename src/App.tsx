@@ -263,26 +263,54 @@ function App() {
       )}
 
       <footer style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', padding: '2rem' }}>
-        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-          Made with <span style={{ color: 'var(--color-4xx)' }}>❤</span> for the Web
-        </p>
-        <a
-          href="https://github.com"
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            marginTop: '1rem',
-            color: 'var(--text-main)',
-            textDecoration: 'none',
-            fontSize: '0.9rem'
-          }}
-        >
-          <Github size={16} />
-          View on GitHub
-        </a>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+          <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+            Made with <span style={{ color: 'var(--color-4xx)' }}>❤</span> for the Web
+          </p>
+          <p style={{ marginTop: '0.5rem' }}>
+            Built by <strong>Mejbaur Bahar Fagun</strong>
+          </p>
+          <p style={{ fontSize: '0.9rem' }}>
+            Senior Software Engineer QA
+          </p>
+
+          <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+            <a
+              href="https://www.linkedin.com/in/mejbaur/"
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center' }}
+            >
+              <img
+                src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
+                alt="LinkedIn"
+                style={{ height: '28px' }}
+              />
+            </a>
+
+            <a
+              href="https://github.com/fagun18/HTTP-Status-Codes-Modern-Cheat-Sheet.git"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                color: 'var(--text-main)',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                border: '1px solid var(--border-color)',
+                padding: '0.25rem 0.75rem',
+                borderRadius: '4px',
+                background: 'var(--bg-card)',
+                height: '28px'
+              }}
+            >
+              <Github size={16} />
+              View on GitHub
+            </a>
+          </div>
+        </div>
       </footer>
 
     </div>

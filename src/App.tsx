@@ -322,7 +322,7 @@ function App() {
                       Visual Representation
                     </h3>
                     <div style={{
-                      width: '100%', height: '200px', borderRadius: '12px', overflow: 'hidden',
+                      width: '100%', minHeight: '250px', borderRadius: '12px', overflow: 'hidden',
                       background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center',
                       border: '1px solid var(--border-color)', position: 'relative'
                     }}>
@@ -330,7 +330,7 @@ function App() {
                       <img
                         src={`https://http.cat/${activeCode.code}`}
                         alt={`${activeCode.code} cat`}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.parentElement!.style.background = getCategoryStyle(activeCode.category).bg;

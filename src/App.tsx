@@ -280,9 +280,45 @@ function App() {
             </div>
 
             <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>{activeCode.title}</h2>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', lineHeight: '1.7' }}>
-              {activeCode.description}
-            </p>
+
+            <div style={{ maxHeight: '60vh', overflowY: 'auto', paddingRight: '0.5rem' }}>
+              <p style={{ fontSize: '1.25rem', color: 'var(--text-main)', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+                {activeCode.description}
+              </p>
+
+              {activeCode.details && (
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                    Details
+                  </h3>
+                  <p style={{ color: 'var(--text-main)', lineHeight: '1.6' }}>
+                    {activeCode.details}
+                  </p>
+                </div>
+              )}
+
+              {activeCode.useCase && (
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                    Common Use Case
+                  </h3>
+                  <p style={{ color: 'var(--text-main)', lineHeight: '1.6', background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', borderLeft: `3px solid ${getCategoryStyle(activeCode.category).color}` }}>
+                    {activeCode.useCase}
+                  </p>
+                </div>
+              )}
+
+              {activeCode.solution && (
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h3 style={{ fontSize: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                    How to Fix / Handle
+                  </h3>
+                  <p style={{ color: 'var(--text-main)', lineHeight: '1.6' }}>
+                    {activeCode.solution}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

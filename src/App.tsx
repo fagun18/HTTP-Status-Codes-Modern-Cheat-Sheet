@@ -233,91 +233,135 @@ function App() {
           zIndex: 1000,
           padding: '1rem'
         }} onClick={() => setActiveCode(null)}>
-          <div
-            style={{
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-color)',
-              borderRadius: '24px',
-              padding: '2.5rem',
-              maxWidth: '600px',
-              width: '100%',
-              position: 'relative',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setActiveCode(null)}
-              style={{
-                position: 'absolute',
-                top: '1.5rem',
-                right: '1.5rem',
-                color: 'var(--text-muted)',
-                padding: '0.5rem'
-              }}
-            >
-              <X size={24} />
-            </button>
+          <div style={{
+            background: 'var(--bg-card)', border: '1px solid var(--border-color)',
+            borderRadius: '16px', padding: '0', width: '100%', maxWidth: '900px',
+            position: 'relative', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+            maxHeight: '90vh', display: 'flex', flexDirection: 'column', overflow: 'hidden'
+          }} onClick={e => e.stopPropagation()}>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-              <span style={{
-                fontSize: '4rem',
-                fontWeight: '800',
-                color: getCategoryStyle(activeCode.category).color
-              }}>
-                {activeCode.code}
-              </span>
-              <div style={{
-                padding: '0.5rem 1rem',
-                borderRadius: '9999px',
-                background: getCategoryStyle(activeCode.category).bg,
-                color: getCategoryStyle(activeCode.category).color,
-                fontWeight: '600',
-                fontSize: '0.875rem'
-              }}>
-                {activeCode.category}
+            {/* Header */}
+            <div style={{
+              padding: '1.5rem', borderBottom: '1px solid var(--border-color)',
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              background: 'rgba(255,255,255,0.02)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span style={{
+                  fontSize: '1.5rem', fontWeight: 'bold', color: getCategoryStyle(activeCode.category).color,
+                  fontFamily: 'monospace'
+                }}>
+                  {activeCode.code}
+                </span>
+                <span style={{
+                  padding: '0.25rem 0.75rem', borderRadius: '999px', fontSize: '0.875rem', fontWeight: '500',
+                  background: getCategoryStyle(activeCode.category).bg, color: getCategoryStyle(activeCode.category).color, border: `1px solid ${getCategoryStyle(activeCode.category).color}`
+                }}>
+                  {activeCode.category}
+                </span>
               </div>
+              <button
+                onClick={() => setActiveCode(null)}
+                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '0.5rem' }}
+              >
+                <X size={24} />
+              </button>
             </div>
 
-            <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>{activeCode.title}</h2>
+            <div style={{ overflowY: 'auto' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0' }}>
 
-            <div style={{ maxHeight: '60vh', overflowY: 'auto', paddingRight: '0.5rem' }}>
-              <p style={{ fontSize: '1.25rem', color: 'var(--text-main)', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-                {activeCode.description}
-              </p>
-
-              {activeCode.details && (
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-                    Details
-                  </h3>
-                  <p style={{ color: 'var(--text-main)', lineHeight: '1.6' }}>
-                    {activeCode.details}
+                {/* Left Column: Details */}
+                <div style={{ padding: '2rem', borderRight: '1px solid var(--border-color)' }}>
+                  <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', lineHeight: '1.1' }}>{activeCode.title}</h2>
+                  <p style={{ fontSize: '1.1rem', color: 'var(--text-main)', lineHeight: '1.6', marginBottom: '2rem' }}>
+                    {activeCode.description}
                   </p>
-                </div>
-              )}
 
-              {activeCode.useCase && (
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-                    Common Use Case
-                  </h3>
-                  <p style={{ color: 'var(--text-main)', lineHeight: '1.6', background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', borderLeft: `3px solid ${getCategoryStyle(activeCode.category).color}` }}>
-                    {activeCode.useCase}
-                  </p>
-                </div>
-              )}
+                  {activeCode.details && (
+                    <div style={{ marginBottom: '2rem' }}>
+                      <h3 style={{ fontSize: '0.875rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <Info size={16} /> Details
+                      </h3>
+                      <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                        {activeCode.details}
+                      </p>
+                    </div>
+                  )}
 
-              {activeCode.solution && (
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-                    How to Fix / Handle
-                  </h3>
-                  <p style={{ color: 'var(--text-main)', lineHeight: '1.6' }}>
-                    {activeCode.solution}
-                  </p>
+                  {activeCode.useCase && (
+                    <div style={{ marginBottom: '2rem' }}>
+                      <h3 style={{ fontSize: '0.875rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <Globe size={16} /> Common Use Case
+                      </h3>
+                      <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px', borderLeft: `3px solid ${getCategoryStyle(activeCode.category).color}` }}>
+                        <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
+                          {activeCode.useCase}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeCode.solution && (
+                    <div>
+                      <h3 style={{ fontSize: '0.875rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <AlertCircle size={16} /> How to Fix
+                      </h3>
+                      <p style={{ color: 'var(--text-main)', lineHeight: '1.6' }}>
+                        {activeCode.solution}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
+
+                {/* Right Column: Media & Code */}
+                <div style={{ padding: '2rem', background: 'rgba(0,0,0,0.2)' }}>
+                  {/* Image Section */}
+                  <div style={{ marginBottom: '2rem' }}>
+                    <h3 style={{ fontSize: '0.875rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
+                      Visual Representation
+                    </h3>
+                    <div style={{
+                      width: '100%', height: '200px', borderRadius: '12px', overflow: 'hidden',
+                      background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      border: '1px solid var(--border-color)', position: 'relative'
+                    }}>
+                      {/* Using http.cat as a reliable source for fun visualization */}
+                      <img
+                        src={`https://http.cat/${activeCode.code}`}
+                        alt={`${activeCode.code} cat`}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement!.style.background = getCategoryStyle(activeCode.category).bg;
+                          e.currentTarget.parentElement!.innerHTML = `<span style="font-size: 3rem; color: ${getCategoryStyle(activeCode.category).color}">${activeCode.code}</span>`;
+                        }}
+                      />
+                    </div>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.5rem', textAlign: 'right' }}>
+                      Image source: http.cat
+                    </p>
+                  </div>
+
+                  {/* Code Snippet Section */}
+                  {activeCode.codeSnippet && (
+                    <div>
+                      <h3 style={{ fontSize: '0.875rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>
+                        Response Example
+                      </h3>
+                      <div style={{
+                        background: '#0f172a', borderRadius: '8px', padding: '1rem', border: '1px solid var(--border-color)',
+                        overflowX: 'auto'
+                      }}>
+                        <pre style={{ margin: 0, fontFamily: 'monospace', fontSize: '0.85rem', color: '#e2e8f0', lineHeight: '1.5' }}>
+                          {activeCode.codeSnippet}
+                        </pre>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
